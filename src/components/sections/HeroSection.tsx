@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Body, ArrowDown } from 'lucide-react';
+import { User, ArrowDown } from 'lucide-react';
 
 const HeroSection = () => {
   // Smooth scroll to calculator section
@@ -72,7 +72,7 @@ const HeroSection = () => {
               </div>
               
               <div className="flex justify-center mb-4">
-                <Body className="h-28 w-28 text-bmi-primary" />
+                <User className="h-28 w-28 text-bmi-primary" />
               </div>
               
               <div className="space-y-4 mb-4">

@@ -80,8 +80,7 @@ const BMIResults = ({
           </div>
           <Progress 
             value={getProgressPercentage()} 
-            className="h-2"
-            indicatorClassName={getProgressColor()}
+            className={cn("h-2", getProgressColor())}
           />
           <div className="flex justify-between text-xs text-muted-foreground">
             <span>Underweight</span>
