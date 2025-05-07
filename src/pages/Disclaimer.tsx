@@ -1,11 +1,14 @@
-
 import React from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { FileText } from 'lucide-react';
 import MobileLeaderboardBanner from '@/components/banner/MobileLeaderboardBanner';
+import LeaderboardAd from '@/components/banner/LeaderboardAd';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Disclaimer = () => {
+  const isMobile = useIsMobile();
+  
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
@@ -31,6 +34,13 @@ const Disclaimer = () => {
                   or treatment. Always seek the advice of your physician or other qualified health provider with any 
                   questions you may have regarding your health or a medical condition.
                 </p>
+                
+                {/* Leaderboard Ad - Desktop Only */}
+                {!isMobile && (
+                  <div className="my-8 flex justify-center">
+                    <LeaderboardAd />
+                  </div>
+                )}
                 
                 <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-4">Not Medical Advice</h2>
                 <p className="text-gray-700 mb-4">
