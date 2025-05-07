@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Slider } from '@/components/ui/slider';
-import { Weight, Height, User, Scale } from 'lucide-react';
+import { Weight, Ruler, User, Scale } from 'lucide-react';
 import BMIResults from './BMIResults';
 import { calculateBMI, getBMICategory, getBMIDescription } from '@/lib/bmi-calculator';
 
@@ -158,7 +158,7 @@ const BMICalculator = () => {
               {/* Height Input */}
               <div className="space-y-2">
                 <Label className="flex items-center gap-1.5">
-                  <Height className="h-4 w-4" />
+                  <Ruler className="h-4 w-4" />
                   Height
                 </Label>
                 {unit === 'metric' ? (
