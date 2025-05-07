@@ -3,6 +3,7 @@ import React from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { FileText } from 'lucide-react';
+import MobileLeaderboardBanner from '@/components/banner/MobileLeaderboardBanner';
 
 const Disclaimer = () => {
   return (
@@ -94,6 +95,9 @@ const Disclaimer = () => {
       </main>
       
       <Footer />
+      
+      {/* Mobile Leaderboard Banner */}
+      <MobileLeaderboardBanner />
     </div>
   );
 };

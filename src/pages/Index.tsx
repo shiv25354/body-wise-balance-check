@@ -8,6 +8,7 @@ import SolutionSection from '@/components/sections/SolutionSection';
 import FAQSection from '@/components/sections/FAQSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import BMICalculator from '@/components/calculator/BMICalculator';
+import MobileLeaderboardBanner from '@/components/banner/MobileLeaderboardBanner';
 
 const Index = () => {
   return (
@@ -50,6 +51,9 @@ const Index = () => {
       </main>
       
       <Footer />
+      
+      {/* Mobile Leaderboard Banner */}
+      <MobileLeaderboardBanner />
     </div>
   );
 };
