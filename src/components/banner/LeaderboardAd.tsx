@@ -15,6 +15,7 @@ const LeaderboardAd = ({ className, position }: LeaderboardAdProps) => {
       className={className} 
       position={position} 
       format="leaderboard" 
+      label="Advertisement"
     />
   );
 };

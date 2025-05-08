@@ -15,6 +15,7 @@ const LargeRectangleAd = ({ className, position }: LargeRectangleAdProps) => {
       className={className} 
       position={position} 
       format="rectangle" 
+      label="Advertisement"
     />
   );
 };

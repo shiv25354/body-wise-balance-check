@@ -21,9 +21,11 @@ export const calculateBMI = (
 // Get BMI category based on BMI value
 export const getBMICategory = (bmi: number): string => {
   if (bmi < 16) {
-    return 'Severe Underweight';
+    return 'Severe Thinness';
+  } else if (bmi < 17) {
+    return 'Moderate Thinness';
   } else if (bmi < 18.5) {
-    return 'Underweight';
+    return 'Mild Thinness';
   } else if (bmi < 25) {
     return 'Normal weight';
   } else if (bmi < 30) {

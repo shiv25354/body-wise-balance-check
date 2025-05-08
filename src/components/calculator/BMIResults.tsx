@@ -11,6 +11,8 @@ interface BMIResultsProps {
   age: number;
   gender: string;
   bodyType: string;
+  healthyRange: { min: number; max: number } | null;
+  unit: string;
   className?: string;
 }
 
@@ -21,12 +23,17 @@ const BMIResults = ({
   age, 
   gender, 
   bodyType, 
+  healthyRange,
+  unit,
   className 
 }: BMIResultsProps) => {
   // Get progress color based on BMI category
   const getProgressColor = () => {
     switch (category) {
       case 'Underweight':
+      case 'Mild Thinness':
+      case 'Moderate Thinness':
+      case 'Severe Thinness':
         return 'bg-yellow-400';
       case 'Normal weight':
         return 'bg-green-500';
@@ -49,6 +56,25 @@ const BMIResults = ({
     let percentage = ((bmi - 16) / (40 - 16)) * 100;
     percentage = Math.max(0, Math.min(100, percentage));
     return percentage;
+  };
+  
+  // Calculate BMI Prime
+  const getBMIPrime = () => {
+    return (bmi / 25).toFixed(2);
+  };
+
+  // Display Ponderal Index
+  const getPonderalIndex = () => {
+    // PI = weight(kg) / height³(m³)
+    // Since BMI = weight(kg) / height²(m²)
+    // PI = BMI / height
+    const height = unit === 'metric' ? bmi / (bmi * bmi) : (bmi * 703) / ((bmi * 703) * (bmi * 703));
+    return (bmi / height).toFixed(2);
+  };
+
+  // Format weight with unit
+  const formatWeight = (weight: number) => {
+    return `${Math.round(weight)} ${unit === 'metric' ? 'kg' : 'lbs'}`;
   };
 
   return (
@@ -87,6 +113,32 @@ const BMIResults = ({
             <span>Normal</span>
             <span>Overweight</span>
             <span>Obese</span>
+          </div>
+        </div>
+        
+        <div className="grid sm:grid-cols-2 gap-4 my-6">
+          <div className="bg-muted/30 p-4 rounded-lg">
+            <h4 className="font-semibold mb-2">Healthy BMI Range:</h4>
+            <p>18.5 kg/m² - 25 kg/m²</p>
+          </div>
+          {healthyRange && (
+            <div className="bg-muted/30 p-4 rounded-lg">
+              <h4 className="font-semibold mb-2">Healthy Weight Range:</h4>
+              <p>
+                {formatWeight(healthyRange.min)} - {formatWeight(healthyRange.max)}
+              </p>
+            </div>
+          )}
+        </div>
+        
+        <div className="grid sm:grid-cols-2 gap-4 my-6">
+          <div className="bg-muted/30 p-4 rounded-lg">
+            <h4 className="font-semibold mb-2">BMI Prime:</h4>
+            <p>{getBMIPrime()}</p>
+          </div>
+          <div className="bg-muted/30 p-4 rounded-lg">
+            <h4 className="font-semibold mb-2">Ponderal Index:</h4>
+            <p>{getPonderalIndex()} kg/m³</p>
           </div>
         </div>
         

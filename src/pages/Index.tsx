@@ -8,6 +8,7 @@ import SolutionSection from '@/components/sections/SolutionSection';
 import FAQSection from '@/components/sections/FAQSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import BMICalculator from '@/components/calculator/BMICalculator';
+import BMIInfoSection from '@/components/sections/BMIInfoSection';
 import MobileLeaderboardBanner from '@/components/banner/MobileLeaderboardBanner';
 import LeaderboardAd from '@/components/banner/LeaderboardAd';
 import LargeRectangleAd from '@/components/banner/LargeRectangleAd';
@@ -47,15 +48,6 @@ const Index = () => {
             {/* Calculator Section */}
             <section id="calculator" className="flex-1 py-16 md:py-24 bg-white">
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                    Calculate Your <span className="text-bmi-primary">BMI</span> Now
-                  </h2>
-                  <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                    Get personalized results with our advanced Body Mass Index calculator
-                  </p>
-                </div>
-                
                 <BMICalculator />
                 
                 {/* Large Rectangle Ad - Mobile and Desktop */}
@@ -67,6 +59,9 @@ const Index = () => {
           </div>
         </div>
         
+        {/* BMI Information Section */}
+        <BMIInfoSection />
+        
         {/* Solution/Benefits Section */}
         <section id="about">
           <SolutionSection />
@@ -74,6 +69,13 @@ const Index = () => {
         
         {/* Testimonials Section */}
         <TestimonialsSection />
+        
+        {/* Leaderboard Ad - Desktop Only */}
+        {!isMobile && (
+          <div className="py-6 flex justify-center bg-gray-50">
+            <LeaderboardAd />
+          </div>
+        )}
         
         {/* FAQ Section */}
         <FAQSection />

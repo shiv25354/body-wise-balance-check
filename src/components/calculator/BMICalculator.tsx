@@ -9,7 +9,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Slider } from '@/components/ui/slider';
 import { Weight, Ruler, User, Scale } from 'lucide-react';
 import BMIResults from './BMIResults';
-import { calculateBMI, getBMICategory, getBMIDescription } from '@/lib/bmi-calculator';
+import { calculateBMI, getBMICategory, getBMIDescription, getHealthyWeightRange } from '@/lib/bmi-calculator';
 
 const BMICalculator = () => {
   // State for calculator inputs
@@ -24,6 +24,7 @@ const BMICalculator = () => {
   const [bmi, setBmi] = useState<number | null>(null);
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
+  const [healthyRange, setHealthyRange] = useState<{ min: number, max: number } | null>(null);
   const [showResults, setShowResults] = useState(false);
 
   // Calculate height in meters or inches based on selected unit
@@ -75,10 +76,12 @@ const BMICalculator = () => {
     const calculatedBMI = calculateBMI(weightInUnit, heightInUnit, unit);
     const bmiCategory = getBMICategory(calculatedBMI);
     const bmiDescription = getBMIDescription(calculatedBMI, age, gender, bodyType);
+    const healthyWeightRange = getHealthyWeightRange(heightInUnit, unit);
     
     setBmi(calculatedBMI);
     setCategory(bmiCategory);
     setDescription(bmiDescription);
+    setHealthyRange(healthyWeightRange);
     setShowResults(true);
   };
   
@@ -95,14 +98,24 @@ const BMICalculator = () => {
 
   return (
     <div className="w-full max-w-4xl mx-auto">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4">BMI Calculator</h1>
+        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          The Body Mass Index (BMI) calculator can be used to calculate BMI value and corresponding weight status while taking age into consideration.
+        </p>
+        <p className="mt-2 text-gray-600">
+          BMI is a measurement of a person's leanness or corpulence based on their height and weight, intended to quantify tissue mass.
+        </p>
+      </div>
+      
       <Card className="border-bmi-light shadow-lg">
         <CardHeader className="bg-gradient-to-r from-bmi-primary to-bmi-secondary text-white rounded-t-lg">
           <CardTitle className="flex items-center gap-2 text-2xl">
             <Scale className="h-6 w-6" />
-            Body Mass Index Calculator
+            Calculate Your Body Mass Index
           </CardTitle>
           <CardDescription className="text-white/80">
-            Calculate your BMI with precision, adjusted for age, gender and body type
+            Enter your details below to determine your BMI and weight status. Applicable for ages 2-120.
           </CardDescription>
         </CardHeader>
         
@@ -141,8 +154,8 @@ const BMICalculator = () => {
                 </div>
                 <Slider
                   value={[age]}
-                  min={1}
-                  max={100}
+                  min={2}
+                  max={120}
                   step={1}
                   onValueChange={(value) => setAge(value[0])}
                   className="py-4"
@@ -313,6 +326,8 @@ const BMICalculator = () => {
           age={age}
           gender={gender}
           bodyType={bodyType}
+          healthyRange={healthyRange}
+          unit={unit}
           className="mt-6"
         />
       )}
