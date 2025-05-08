@@ -7,9 +7,10 @@ interface AdBannerProps {
   className?: string;
   position?: 'inline' | 'fixed' | 'sticky';
   format: 'skyscraper' | 'rectangle' | 'leaderboard';
+  label?: string;
 }
 
-const AdBanner = ({ width, height, className = '', position = 'inline', format }: AdBannerProps) => {
+const AdBanner = ({ width, height, className = '', position = 'inline', format, label = 'ADVERTISEMENT' }: AdBannerProps) => {
   const getFormatName = () => {
     switch (format) {
       case 'skyscraper':
@@ -31,7 +32,7 @@ const AdBanner = ({ width, height, className = '', position = 'inline', format }
       style={{ width: `${width}px`, height: `${height}px` }}
     >
       <div className="bg-gray-100 border border-gray-200 rounded-md flex flex-col items-center justify-center h-full">
-        <div className="text-gray-400 text-xs mb-2">ADVERTISEMENT</div>
+        <div className="text-gray-400 text-xs mb-2">{label}</div>
         <div className="font-medium text-gray-500 text-center px-2">{getFormatName()}</div>
         <div className="text-gray-400 text-xs mt-1">{width} x {height}</div>
       </div>

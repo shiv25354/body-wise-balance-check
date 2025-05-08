@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/sections/HeroSection';
@@ -17,6 +17,32 @@ import { useIsMobile } from '@/hooks/use-mobile';
 
 const Index = () => {
   const isMobile = useIsMobile();
+  
+  useEffect(() => {
+    // Add schema markup for the BMI Calculator
+    const schemaScript = document.createElement('script');
+    schemaScript.type = 'application/ld+json';
+    const schemaData = {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      'name': 'Free Body Mass Index Calculator',
+      'applicationCategory': 'HealthApplication',
+      'operatingSystem': 'Web',
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD'
+      },
+      'description': 'Instant BMI Calculator to check your health status. This free tool uses height and weight to give an accurate BMI and category.'
+    };
+    
+    schemaScript.innerHTML = JSON.stringify(schemaData);
+    document.head.appendChild(schemaScript);
+    
+    return () => {
+      document.head.removeChild(schemaScript);
+    };
+  }, []);
   
   return (
     <div className="flex flex-col min-h-screen">
