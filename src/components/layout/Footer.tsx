@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Scale } from 'lucide-react';
@@ -63,6 +64,11 @@ const Footer = () => {
                 >
                   FAQ
                 </a>
+              </li>
+              <li>
+                <Link to="/sitemap" className="text-base text-gray-600 hover:text-bmi-primary">
+                  Sitemap
+                </Link>
               </li>
             </ul>
           </div>
