@@ -132,6 +132,8 @@ const BMICalculator = () => {
           bodyType={bodyType}
           healthyRange={healthyRange}
           unit={unit}
+          height={height}
+          weight={weight}
           className="mt-6"
         />
       )}

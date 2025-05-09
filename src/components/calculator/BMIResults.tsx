@@ -1,8 +1,10 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { downloadBMIPDF } from '@/lib/pdf-generator';
+import { save as SaveIcon } from 'lucide-react';
 
 interface BMIResultsProps {
   bmi: number;
@@ -13,6 +15,8 @@ interface BMIResultsProps {
   bodyType: string;
   healthyRange: { min: number; max: number } | null;
   unit: string;
+  height?: { cm: number; ft: number; in: number };
+  weight?: { kg: number; lbs: number };
   className?: string;
 }
 
@@ -25,6 +29,8 @@ const BMIResults = ({
   bodyType, 
   healthyRange,
   unit,
+  height,
+  weight,
   className 
 }: BMIResultsProps) => {
   // Get progress color based on BMI category
@@ -77,13 +83,45 @@ const BMIResults = ({
     return `${Math.round(weight)} ${unit === 'metric' ? 'kg' : 'lbs'}`;
   };
 
+  const handleDownloadPDF = () => {
+    if (height && weight) {
+      downloadBMIPDF({
+        bmi,
+        category,
+        description,
+        age,
+        gender,
+        bodyType,
+        healthyRange,
+        unit,
+        height,
+        weight
+      });
+    }
+  };
+
   return (
     <Card className={cn("border-bmi-light shadow-lg overflow-hidden", className)}>
       <CardHeader className="bg-gradient-to-r from-bmi-secondary to-bmi-accent text-white">
-        <CardTitle className="text-center text-2xl">Your BMI Results</CardTitle>
-        <CardDescription className="text-center text-white/80">
-          Based on your {age} year old {gender} profile with a {bodyType} build
-        </CardDescription>
+        <div className="flex justify-between items-center">
+          <div>
+            <CardTitle className="text-center text-2xl">Your BMI Results</CardTitle>
+            <CardDescription className="text-center text-white/80">
+              Based on your {age} year old {gender} profile with a {bodyType} build
+            </CardDescription>
+          </div>
+          {height && weight && (
+            <Button 
+              variant="secondary" 
+              size="sm"
+              onClick={handleDownloadPDF}
+              className="bg-white text-bmi-primary hover:bg-gray-100 whitespace-nowrap"
+            >
+              <SaveIcon className="w-4 h-4 mr-2" />
+              Download PDF
+            </Button>
+          )}
+        </div>
       </CardHeader>
       
       <CardContent className="pt-6 space-y-4">
