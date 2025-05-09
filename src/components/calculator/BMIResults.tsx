@@ -4,7 +4,7 @@ import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { downloadBMIPDF } from '@/lib/pdf-generator';
-import { save as SaveIcon } from 'lucide-react';
+import { Save as SaveIcon } from 'lucide-react';
 
 interface BMIResultsProps {
   bmi: number;
