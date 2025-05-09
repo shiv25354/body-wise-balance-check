@@ -1,15 +1,18 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { Map } from 'lucide-react';
 
 const Sitemap = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  
   // Smooth scroll function for in-page navigation on home page
   const scrollToSection = (sectionId: string) => {
     // Navigate to home page first if not already there
-    if (window.location.pathname !== '/') {
+    if (!isHomePage) {
       window.location.href = `/#${sectionId}`;
       return;
     }

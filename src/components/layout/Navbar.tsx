@@ -1,12 +1,21 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Scale, Calculator } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  
   // Smooth scroll function for in-page navigation
   const scrollToSection = (sectionId: string) => {
+    // If not on homepage, navigate to homepage with hash
+    if (!isHomePage) {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+    
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -20,7 +29,7 @@ const Navbar = () => {
           <Scale className="h-6 w-6 text-bmi-primary" />
           <Link to="/" className="text-xl font-bold text-bmi-primary">BodyWise BMI</Link>
         </div>
-        <nav className="flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-6">
           <Link to="/" className="text-sm font-medium hover:text-bmi-primary transition-colors">Home</Link>
           <a 
             href="#calculator" 
@@ -60,6 +69,16 @@ const Navbar = () => {
             Calculate Now
           </Button>
         </nav>
+        
+        {/* Mobile menu button */}
+        <Button 
+          variant="ghost" 
+          className="md:hidden p-2"
+          onClick={() => scrollToSection('calculator')}
+        >
+          <Calculator className="h-5 w-5 text-bmi-primary" />
+          <span className="sr-only">Calculate BMI</span>
+        </Button>
       </div>
     </header>
   );

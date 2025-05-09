@@ -1,11 +1,20 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Scale } from 'lucide-react';
 
 const Footer = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  
   // Smooth scroll function for in-page navigation
   const scrollToSection = (sectionId: string) => {
+    // If not on homepage, navigate to homepage with hash
+    if (!isHomePage) {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+    
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
