@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import { Sitemap as SitemapIcon } from 'lucide-react';
+import { Map } from 'lucide-react';
 
 const Sitemap = () => {
   // Smooth scroll function for in-page navigation on home page
@@ -27,7 +27,7 @@ const Sitemap = () => {
       <main className="flex-grow py-12">
         <div className="container mx-auto px-4">
           <div className="mb-8 flex items-center gap-3">
-            <SitemapIcon className="h-8 w-8 text-bmi-primary" />
+            <Map className="h-8 w-8 text-bmi-primary" />
             <h1 className="text-3xl font-bold text-gray-900">Sitemap</h1>
           </div>
           
