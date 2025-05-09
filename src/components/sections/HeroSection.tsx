@@ -1,11 +1,12 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { User, ArrowDown } from 'lucide-react';
 
 const HeroSection = () => {
-  // Smooth scroll to calculator section
-  const scrollToCalculator = () => {
-    const element = document.getElementById('calculator');
+  // Smooth scroll to specific sections
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -38,13 +39,17 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Button 
                 className="bg-bmi-primary hover:bg-bmi-accent text-lg px-6 py-6"
-                onClick={scrollToCalculator}
+                onClick={() => scrollToSection('calculator')}
               >
                 Calculate Your BMI
                 <ArrowDown className="ml-2 h-4 w-4" />
               </Button>
               
-              <Button variant="outline" className="text-lg px-6 py-6">
+              <Button 
+                variant="outline" 
+                className="text-lg px-6 py-6"
+                onClick={() => scrollToSection('bmi-introduction')}
+              >
                 Learn About BMI
               </Button>
             </div>
