@@ -91,11 +91,35 @@ export const getHealthyWeightRange = (
     // For metric: height in meters
     const minWeight = 18.5 * (height * height);
     const maxWeight = 24.9 * (height * height);
-    return { min: Math.round(minWeight), max: Math.round(maxWeight) };
+    return { min: Math.round(minWeight * 10) / 10, max: Math.round(maxWeight * 10) / 10 };
   } else {
     // For imperial: height in inches, 703 conversion factor
     const minWeight = (18.5 * (height * height)) / 703;
     const maxWeight = (24.9 * (height * height)) / 703;
-    return { min: Math.round(minWeight), max: Math.round(maxWeight) };
+    return { min: Math.round(minWeight * 10) / 10, max: Math.round(maxWeight * 10) / 10 };
   }
+};
+
+// Convert cm to feet and inches
+export const cmToFeetAndInches = (cm: number): { feet: number; inches: number } => {
+  const totalInches = cm / 2.54;
+  const feet = Math.floor(totalInches / 12);
+  const inches = Math.round(totalInches % 12);
+  return { feet, inches };
+};
+
+// Convert feet and inches to cm
+export const feetAndInchesToCm = (feet: number, inches: number): number => {
+  const totalInches = feet * 12 + inches;
+  return Math.round(totalInches * 2.54 * 10) / 10;
+};
+
+// Convert kg to lbs
+export const kgToLbs = (kg: number): number => {
+  return Math.round(kg * 2.20462 * 10) / 10;
+};
+
+// Convert lbs to kg
+export const lbsToKg = (lbs: number): number => {
+  return Math.round(lbs / 2.20462 * 10) / 10;
 };
