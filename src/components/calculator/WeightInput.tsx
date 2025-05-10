@@ -21,8 +21,8 @@ const WeightInput = ({
 }: WeightInputProps) => {
   return (
     <div className="space-y-2">
-      <Label className="flex items-center gap-1.5">
-        <Weight className="h-4 w-4" />
+      <Label className="flex items-center gap-1.5 font-medium">
+        <Weight className="h-5 w-5" />
         Weight
       </Label>
       {unit === 'metric' ? (

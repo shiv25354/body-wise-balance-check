@@ -53,7 +53,7 @@ const BMICalculatorForm = ({
 }: BMICalculatorFormProps) => {
   return (
     <Card className="border-bmi-light shadow-lg">
-      <CardHeader className="bg-gradient-to-r from-bmi-primary to-bmi-secondary text-white rounded-t-lg">
+      <CardHeader className="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-t-lg">
         <CardTitle className="flex items-center gap-2 text-2xl">
           <Scale className="h-6 w-6" />
           Calculate Your Body Mass Index
@@ -102,7 +102,7 @@ const BMICalculatorForm = ({
         </Button>
         <Button 
           onClick={handleCalculate}
-          className="w-full sm:w-auto bg-bmi-primary hover:bg-bmi-accent"
+          className="w-full sm:w-auto bg-blue-500 hover:bg-blue-600"
         >
           Calculate BMI
         </Button>

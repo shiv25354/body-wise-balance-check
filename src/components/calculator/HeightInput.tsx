@@ -21,8 +21,8 @@ const HeightInput = ({
 }: HeightInputProps) => {
   return (
     <div className="space-y-2">
-      <Label className="flex items-center gap-1.5">
-        <Ruler className="h-4 w-4" />
+      <Label className="flex items-center gap-1.5 font-medium">
+        <Ruler className="h-5 w-5" />
         Height
       </Label>
       {unit === 'metric' ? (

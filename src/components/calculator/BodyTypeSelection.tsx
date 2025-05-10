@@ -12,34 +12,34 @@ interface BodyTypeSelectionProps {
 const BodyTypeSelection = ({ bodyType, setBodyType }: BodyTypeSelectionProps) => {
   return (
     <div className="space-y-2">
-      <Label>Body Type</Label>
+      <Label className="font-medium">Body Type</Label>
       <RadioGroup 
         defaultValue="average" 
         value={bodyType}
         onValueChange={setBodyType}
         className="grid grid-cols-3 gap-2"
       >
-        <div className="flex flex-col items-center p-3 border rounded-lg hover:border-bmi-primary cursor-pointer">
+        <div className={`flex flex-col items-center p-3 border rounded-lg cursor-pointer transition-all ${bodyType === 'slim' ? 'border-bmi-primary bg-blue-50' : 'hover:border-bmi-primary'}`}>
           <RadioGroupItem value="slim" id="slim" className="sr-only" />
           <Label htmlFor="slim" className="cursor-pointer text-center">
             <User className="h-8 w-8 mx-auto mb-1" />
-            <span className="text-sm">Slim</span>
+            <span className="text-sm font-normal">Slim</span>
           </Label>
         </div>
         
-        <div className="flex flex-col items-center p-3 border rounded-lg hover:border-bmi-primary cursor-pointer">
+        <div className={`flex flex-col items-center p-3 border rounded-lg cursor-pointer transition-all ${bodyType === 'average' ? 'border-bmi-primary bg-blue-50' : 'hover:border-bmi-primary'}`}>
           <RadioGroupItem value="average" id="average" className="sr-only" />
           <Label htmlFor="average" className="cursor-pointer text-center">
             <User className="h-8 w-8 mx-auto mb-1" />
-            <span className="text-sm">Average</span>
+            <span className="text-sm font-normal">Average</span>
           </Label>
         </div>
         
-        <div className="flex flex-col items-center p-3 border rounded-lg hover:border-bmi-primary cursor-pointer">
+        <div className={`flex flex-col items-center p-3 border rounded-lg cursor-pointer transition-all ${bodyType === 'muscular' ? 'border-bmi-primary bg-blue-50' : 'hover:border-bmi-primary'}`}>
           <RadioGroupItem value="muscular" id="muscular" className="sr-only" />
           <Label htmlFor="muscular" className="cursor-pointer text-center">
             <User className="h-8 w-8 mx-auto mb-1" />
-            <span className="text-sm">Muscular</span>
+            <span className="text-sm font-normal">Muscular</span>
           </Label>
         </div>
       </RadioGroup>
